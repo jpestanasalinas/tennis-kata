@@ -28,7 +28,8 @@ class GameTest {
                 Arguments.of(new Pair(1, 3), "Fifteen-Forty"),
                 Arguments.of(new Pair(2, 3), "Thirty-Forty"),
                 Arguments.of(new Pair(3, 3), "Deuce"),
-                Arguments.of(new Pair(4, 3), "Advantage Player One")
+                Arguments.of(new Pair(4, 3), "Advantage Player One"),
+                Arguments.of(new Pair(3, 4), "Advantage Player Two")
         );
     }
 
