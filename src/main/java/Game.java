@@ -23,10 +23,19 @@ public class Game {
     public String score() {
         if(isADraft()) return handleDraft();
         if(isAdvantage()) return handleAdvantage();
-        if(playerOne.winsTo(playerTwo)) return "Game Player One";
-        if(playerTwo.winsTo(playerOne)) return "Game Player Two";
+        if(isAWin()) return handleWin();
+
 
         return buildPlayerOneScore() + "-" + buildPlayerTwoScore();
+    }
+
+    private boolean isAWin() {
+        return playerOne.winsTo(playerTwo) || playerTwo.winsTo(playerOne);
+    }
+
+    private String handleWin() {
+        if(playerOne.winsTo(playerTwo)) return "Game Player One";
+        return "Game Player Two";
     }
 
     private boolean isADraft() {
