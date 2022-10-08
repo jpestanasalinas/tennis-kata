@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 
 public class Game {
 
-    public static final Map<Integer, String> translations = Stream.of(
+    public static final Map<Integer, String> scoreTranslations = Stream.of(
                     new Object[][]{
                             {0, "Love"},
                             {1, "Fifteen"},
@@ -16,8 +16,8 @@ public class Game {
     private final Player playerTwo;
 
     public Game() {
-        playerOne = new Player();
-        playerTwo = new Player();
+        playerOne = new Player("Player One");
+        playerTwo = new Player("Player Two");
     }
 
     public String score() {
@@ -34,8 +34,9 @@ public class Game {
     }
 
     private String handleWin() {
-        if(playerOne.winsTo(playerTwo)) return "Game Player One";
-        return "Game Player Two";
+        String result = "Game ";
+        if(playerOne.winsTo(playerTwo)) return result + playerOne.name();
+        return result + playerTwo.name();
     }
 
     private boolean isADraft() {
@@ -53,16 +54,16 @@ public class Game {
     }
 
     private String handleAdvantage() {
-        if(playerOne.advantageOf(playerTwo)) return "Advantage Player One";
-        return "Advantage Player Two";
+        if(playerOne.advantageOf(playerTwo)) return "Advantage " + playerOne.name();
+        return "Advantage " + playerTwo.name();
     }
 
     private String buildPlayerOneScore() {
-        return translations.get(playerOne.points());
+        return scoreTranslations.get(playerOne.points());
     }
 
     private String buildPlayerTwoScore() {
-        return translations.get(playerTwo.points());
+        return scoreTranslations.get(playerTwo.points());
     }
 
     public void playerOneHits() {
