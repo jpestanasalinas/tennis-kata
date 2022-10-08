@@ -21,9 +21,9 @@ public class Game {
     }
 
     public String score() {
-        if(isADraft()) return handleDraft();
-        if(isAdvantage()) return handleAdvantage();
-        if(isAWin()) return handleWin();
+        if (isADraft()) return handleDraft();
+        if (isAdvantage()) return handleAdvantage();
+        if (isAWin()) return handleWin();
 
 
         return buildPlayerOneScore() + "-" + buildPlayerTwoScore();
@@ -35,7 +35,7 @@ public class Game {
 
     private String handleWin() {
         String result = "Game ";
-        if(playerOne.winsTo(playerTwo)) return result + playerOne.name();
+        if (playerOne.winsTo(playerTwo)) return result + playerOne.name();
         return result + playerTwo.name();
     }
 
@@ -44,7 +44,7 @@ public class Game {
     }
 
     private String handleDraft() {
-        if(playerOne.deuceWith(playerTwo)) return "Deuce";
+        if (playerOne.deuceWith(playerTwo)) return "Deuce";
 
         return buildPlayerOneScore() + " All";
     }
@@ -54,7 +54,7 @@ public class Game {
     }
 
     private String handleAdvantage() {
-        if(playerOne.advantageOf(playerTwo)) return "Advantage " + playerOne.name();
+        if (playerOne.advantageOf(playerTwo)) return "Advantage " + playerOne.name();
         return "Advantage " + playerTwo.name();
     }
 
@@ -67,13 +67,13 @@ public class Game {
     }
 
     public void playerOneHits() {
-        if(playerOne.winsTo(playerTwo)) throw new GameAlreadyWonException("cannot score another point");
+        if (playerOne.winsTo(playerTwo)) throw new GameAlreadyWonException();
 
         playerOne.hits();
     }
 
     public void playerTwoHits() {
-        if(playerTwo.winsTo(playerOne)) throw new GameAlreadyWonException("cannot score another point");
+        if (playerTwo.winsTo(playerOne)) throw new GameAlreadyWonException();
 
         playerTwo.hits();
     }
