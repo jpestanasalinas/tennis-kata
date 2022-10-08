@@ -32,11 +32,11 @@ public class Game {
     }
 
     private String buildPlayerOneScore() {
-        return translations.get(playerOne.score());
+        return translations.get(playerOne.points());
     }
 
     private String buildPlayerTwoScore() {
-        return translations.get(playerTwo.score());
+        return translations.get(playerTwo.points());
     }
 
     public void playerOneHits() {

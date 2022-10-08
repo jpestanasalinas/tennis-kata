@@ -1,9 +1,10 @@
 public class Player {
 
-    public static final int INITIAL_SCORE = 0;
-    public static final int DIFFERENCE_TO_WIN = 2;
-    public static final int WARNING_ZONE_LIMIT = 3;
-    public static final int DIFFERENCE_TO_ADVANTAGE = 1;
+    private static final int INITIAL_SCORE = 0;
+    private static final int DIFFERENCE_TO_WIN = 2;
+    private static final int WARNING_ZONE_LIMIT = 3;
+    private static final int DIFFERENCE_TO_ADVANTAGE = 1;
+
     private int score;
 
     public Player() {
@@ -19,7 +20,7 @@ public class Player {
     }
 
     public boolean deuceWith(Player other) {
-        return this.draftWith(other) && this.score() >= WARNING_ZONE_LIMIT;
+        return this.draftWith(other) && this.points() >= WARNING_ZONE_LIMIT;
     }
 
     public boolean advantageOf(Player other) {
@@ -34,7 +35,7 @@ public class Player {
         return this.score >= other.score + DIFFERENCE_TO_WIN;
     }
 
-    public int score() {
+    public int points() {
         return score;
     }
 }
