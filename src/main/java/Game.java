@@ -25,6 +25,8 @@ public class Game {
         if(playerOne.draftWith(playerTwo)) return buildPlayerOneScore() + " All";
         if(playerOne.advantageOf(playerTwo)) return "Advantage Player One";
         if(playerTwo.advantageOf(playerOne)) return "Advantage Player Two";
+        if(playerOne.winsTo(playerTwo)) return "Game Player One";
+        if(playerTwo.winsTo(playerOne)) return "Game Player Two";
 
         return buildPlayerOneScore() + "-" + buildPlayerTwoScore();
     }
