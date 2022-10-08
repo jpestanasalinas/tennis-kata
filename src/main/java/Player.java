@@ -15,7 +15,7 @@ public class Player {
     }
 
     public boolean deuceWith(Player other) {
-        return this.draftWith(other) && this.score() == 3;
+        return this.draftWith(other) && this.score() >= 3;
     }
 
     public boolean advantageOf(Player other) {
