@@ -21,14 +21,32 @@ public class Game {
     }
 
     public String score() {
-        if(playerOne.deuceWith(playerTwo)) return "Deuce";
-        if(playerOne.draftWith(playerTwo)) return buildPlayerOneScore() + " All";
-        if(playerOne.advantageOf(playerTwo)) return "Advantage Player One";
+        if(isADraft()) return handleDraft();
+        if(isAdvantage()) return handleAdvantage();
         if(playerTwo.advantageOf(playerOne)) return "Advantage Player Two";
         if(playerOne.winsTo(playerTwo)) return "Game Player One";
         if(playerTwo.winsTo(playerOne)) return "Game Player Two";
 
         return buildPlayerOneScore() + "-" + buildPlayerTwoScore();
+    }
+
+    private boolean isADraft() {
+        return playerOne.draftWith(playerTwo);
+    }
+
+    private String handleDraft() {
+        if(playerOne.deuceWith(playerTwo)) return "Deuce";
+
+        return buildPlayerOneScore() + " All";
+    }
+
+    private boolean isAdvantage() {
+        return playerOne.advantageOf(playerTwo) || playerTwo.advantageOf(playerOne);
+    }
+
+    private String handleAdvantage() {
+        if(playerOne.advantageOf(playerTwo)) return "Advantage Player One";
+        return "Advantage Player Two";
     }
 
     private String buildPlayerOneScore() {
@@ -46,4 +64,5 @@ public class Game {
     public void playerTwoHits() {
         playerTwo.hits();
     }
+
 }
