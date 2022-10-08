@@ -23,6 +23,7 @@ public class Game {
     public String score() {
         if(playerOne.deuceWith(playerTwo)) return "Deuce";
         if(playerOne.draftWith(playerTwo)) return buildPlayerOneScore() + " All";
+        if(playerOne.advantageOf(playerTwo)) return "Advantage Player One";
 
         return buildPlayerOneScore() + "-" + buildPlayerTwoScore();
     }
