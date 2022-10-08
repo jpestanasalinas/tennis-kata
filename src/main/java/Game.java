@@ -23,7 +23,6 @@ public class Game {
     public String score() {
         if(isADraft()) return handleDraft();
         if(isAdvantage()) return handleAdvantage();
-        if(playerTwo.advantageOf(playerOne)) return "Advantage Player Two";
         if(playerOne.winsTo(playerTwo)) return "Game Player One";
         if(playerTwo.winsTo(playerOne)) return "Game Player Two";
 
