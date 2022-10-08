@@ -5,9 +5,11 @@ public class Player {
     private static final int WARNING_ZONE_LIMIT = 3;
     private static final int DIFFERENCE_TO_ADVANTAGE = 1;
 
+    private final String name;
     private int score;
 
-    public Player() {
+    public Player(String name) {
+        this.name = name;
         this.score = INITIAL_SCORE;
     }
 
@@ -33,6 +35,10 @@ public class Player {
         if (this.score <= WARNING_ZONE_LIMIT && other.score <= WARNING_ZONE_LIMIT) return false;
 
         return this.score >= other.score + DIFFERENCE_TO_WIN;
+    }
+
+    public String name() {
+        return name;
     }
 
     public int points() {
