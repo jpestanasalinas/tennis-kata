@@ -66,10 +66,14 @@ public class Game {
     }
 
     public void playerOneHits() {
+        if(playerOne.winsTo(playerTwo)) throw new GameAlreadyWonException("cannot score another point");
+
         playerOne.hits();
     }
 
     public void playerTwoHits() {
+        if(playerTwo.winsTo(playerOne)) throw new GameAlreadyWonException("cannot score another point");
+
         playerTwo.hits();
     }
 

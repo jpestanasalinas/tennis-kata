@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -54,6 +55,19 @@ class GameTest {
         }
 
         Assertions.assertEquals(expected, game.score());
+    }
+
+    @Test
+    public void when_player_score_is_higher_than_three_and_difference_higher_than_two_throws_exception() {
+        RuntimeException exception = Assertions.assertThrows(GameAlreadyWonException.class, () -> {
+            game.playerOneHits();
+            game.playerOneHits();
+            game.playerOneHits();
+            game.playerOneHits();
+            game.playerOneHits();
+        });
+
+        Assertions.assertEquals("cannot score another point", exception.getMessage());
     }
 
     private static class Pair {
