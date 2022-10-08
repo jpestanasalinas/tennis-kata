@@ -1,0 +1,76 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
+class GameTest {
+
+    private static Game game;
+
+    @BeforeEach
+    public void setUp() {
+        game = new Game();
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideScores")
+    public void test(Pair input, String expected) {
+
+        for(int i = 0; i < input.getP1(); i++) {
+            game.playerOneHits();
+        }
+
+        for(int i = 0; i < input.getP2(); i++) {
+            game.playerTwoHits();
+        }
+
+        Assertions.assertEquals(expected, game.score());
+    }
+
+    public static Stream<Arguments> provideScores() {
+        return Stream.of(
+                Arguments.of(new Pair(0,0), "Love All"),
+                Arguments.of(new Pair(1,0),"Fifteen-Love"),
+                Arguments.of(new Pair(2,0),"Thirty-Love"),
+                Arguments.of(new Pair(3,0),"Forty-Love"),
+                Arguments.of(new Pair(0,1), "Love-Fifteen"),
+                Arguments.of(new Pair(1,1),"Fifteen All"),
+                Arguments.of(new Pair(2,1),"Thirty-Fifteen"),
+                Arguments.of(new Pair(3,1),"Forty-Fifteen"),
+                Arguments.of(new Pair(0,2), "Love-Thirty"),
+                Arguments.of(new Pair(1,2),"Fifteen-Thirty"),
+                Arguments.of(new Pair(2,2),"Thirty All"),
+                Arguments.of(new Pair(3,2),"Forty-Thirty"),
+                Arguments.of(new Pair(0,3), "Love-Forty"),
+                Arguments.of(new Pair(1,3),"Fifteen-Forty"),
+                Arguments.of(new Pair(2,3),"Thirty-Forty"),
+                Arguments.of(new Pair(3,3),"Deuce")
+        );
+    }
+
+    private static class Pair {
+        private final int p1;
+        private final int p2;
+
+        public Pair(int p1, int p2) {
+            this.p1 = p1;
+            this.p2 = p2;
+        }
+
+        public int getP1() {
+            return p1;
+        }
+
+        public int getP2() {
+            return p2;
+        }
+
+        @Override
+        public String toString() {
+            return p1 + "-" + p2;
+        }
+    }
+}
